@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>UniP</title>
+	<meta name="viewport" content="width=device-width,  initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="./static/css/ios.css" type="text/css" media="screen">
+	<script language="Javascript" src="./static/js/md5.js"></script>
+	<script language="Javascript" src="./static/js/rules.js"></script>
+	<script language="Javascript" src="./static/js/unip.js"></script>
+</head>
+<body>
+	<div class="ios-navbar">
+		<h1>UniP</h1>
+	</div>
+	<div class="ios-navbar-placeholder"></div>
+	<div class="ios-block">
+		<div class="ios-sheet">
+			<div>
+				<label>Service</label>
+				<select id="Service" onchange="$CalcUniP()"></select>
+				<script language="Javascript">
+				<!--
+				(function() {
+					for (var i in $Rules)
+						document.getElementById('Service').innerHTML += '<option value="' + i + '">' + i + '</option>';
+				})();
+				-->
+				</script>
+			</div>
+			<div>
+				<label>Account</label>
+				<input id="Account" onkeyup="$CalcUniP()">
+			</div>
+			<div>
+				<label>Seed</label>
+				<input id="Seed" type="password" onkeyup="$CalcUniP()">
+			</div>
+		</div>
+	</div>
+	<div class="ios-block">
+		<h2>Password</h2>
+		<div class="ios-sheet">
+			<p id="Password" style="TEXT-ALIGN:center">&nbsp;</p>
+		</div>
+	</div>
+</body>
+</html>
+<!-- vim: se ft=html fenc=utf-8 ff=unix tw=198486 noet sw=2 ts=2 sts=2: -->

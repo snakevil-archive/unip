@@ -1,0 +1,77 @@
+BODY {
+  margin: 8px;
+  background-size: 7px;
+  background-image : -webkit-linear-gradient(left, #C5CCD4 0%, #C5CCD4 71%, #CBD2D8 71%, #CBD2D8 100%);
+  font-family: Helvetica, Arial, sans-serif;
+}
+INPUT {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+DIV.ios-navbar {
+  position: fixed;
+  z-index: 198486;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 42px;
+  border-top: 1px solid #6D84A2;
+  border-bottom: 1px solid #2D3642;
+  background: url('../image/navbar.png') #6D84A2 repeat-x;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.6);
+}
+DIV.ios-navbar > H1 {
+  margin: 0;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 42px;
+  text-align: center;
+  white-space: nowrap;
+}
+DIV.ios-navbar-placeholder {
+  margin: 8px;
+  height: 24px;
+}
+
+DIV.ios-block {
+  margin: 20px 0;
+  font-size: 16px;
+}
+DIV.ios-block > DIV.ios-sheet {
+  border: 1px solid #A1A7AD;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  background-color: #F3F4F5;
+  box-shadow: 0 1px 0 rgba(255,255,255,.4);
+}
+DIV.ios-block > DIV.ios-sheet > DIV {
+  border-top: 1px solid #FFFFFF;
+  border-bottom: 1px solid #A1A7AD;
+  text-align: right;
+  height: 42px;
+  padding: 0 10px;
+}
+DIV.ios-block > DIV.ios-sheet > DIV:first-of-type {
+  border-top-width: 0;
+}
+DIV.ios-block > DIV.ios-sheet > DIV:last-of-type {
+  border-bottom-width: 0;
+}
+DIV.ios-block > DIV.ios-sheet > DIV > LABEL {
+  float: left;
+  white-space: nowrap;
+  line-height: 42px;
+  font-weight: bold;
+  color: #000000;
+}
+DIV.ios-block > DIV.ios-sheet > DIV > INPUT {
+  border-width: 0;
+  background-color: #F3F4F5;
+  margin: 8px 0 0 10px;
+  width: 50%;
+  font-size: 16px;
+}
+
+/* vim: se ft=css fenc=utf-8 ff=unix tw=198486 sw=2 ts=2 sts=2: */
