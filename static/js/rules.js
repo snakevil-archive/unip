@@ -22,8 +22,8 @@
  */
 
 $Rules = {
-    'github.com' : {chars:'',length:32},
-	'weibo.com' : {chars:'',length:16},
+    'github.com' : {title:'GitHub',chars:'',length:32},
+	'weibo.com' : {title:'新浪微博',chars:'',length:16},
 }
 
 // vim: se ft=javascript fenc=utf-8 ff=unix:
