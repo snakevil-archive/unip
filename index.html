@@ -12,7 +12,7 @@
 <script type="text/javascript" src="./static/js/unip.js"></script>
 </head>
 <div class="header toolbar">
-	<h1 class="text">UniP</h1>
+	<h1 class="text">Uni<small>•que•</small>P<small>•assword Calculator</small></h1>
 </div>
 <div class="page_body jt_vp" >
 	<div class="jt_vp_b">
@@ -22,8 +22,16 @@
 					<label class="text_label">Service</label>
 					<select class="text_feild" id="Service" onchange="$CalcUniP()"><script>
 						(function() {
-							for (var i in $Rules)
-								document.write('<option value="' + i + '">' + i + '</option>');
+							var i=[];
+							for (var j in $Rules)i[i.length]=j;
+							i=i.sort();var k,l;
+							for (j=0;j<i.length;j++){
+								k=$Rules[i[j]].title,l=i[j].split('.');
+								if(!k)l[0]=l[0].charAt(0).toUpperCase()+l[0].substr(1),k=l.join('.');
+								else if(k.toLowerCase()==l[0].toLowerCase())l[0]=k,k=l.join('.');
+								else k+=' ('+i[j]+')';
+								document.write('<option value="'+i[j]+'">'+k+'</option>');
+							}
 						})();
 						</script></select>
 				</div>
@@ -42,6 +50,7 @@
 			<div class="ios_list_view">
 				<div class="list_item">
 					<p id="Password">&nbsp;</p>
+					<script>$CalcUniP()</script>
 				</div>
 			</div>
 		</div>
@@ -49,3 +58,4 @@
 </div>
 </body>
 </html>
+<!-- vim: se ft=html fenc=utf-8 ff=unix tw=198486 sw=2 ts=2 sts=2 noet: -->
