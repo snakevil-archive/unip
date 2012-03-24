@@ -22,14 +22,14 @@
  */
 
 $Rules = {
-    '101domain.com' : {title:'',chars:'',length:32},
-    'alipay.com' : {title:'支付宝',chars:'',length:32},
-    'facebook.com' : {title:'',chars:'',length:32},
-    'github.com' : {title:'GitHub',chars:'',length:32},
-    'google.com' : {title:'',chars:'',length:32},
+    '101domain.com' : {title:'',chars:'',length:0},
+    'alipay.com' : {title:'支付宝',chars:'',length:0},
+    'facebook.com' : {title:'',chars:'',length:0},
+    'github.com' : {title:'GitHub',chars:'',length:0},
+    'google.com' : {title:'',chars:'',length:0},
     'qq.com' : {title:'QQ',chars:'!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~',length:16},
     'taobao.com' : {title:'淘宝网',chars:'',length:16},
-    'twitter.com' : {title:'',chars:'',length:32},
+    'twitter.com' : {title:'',chars:'',length:0},
 	'weibo.com' : {title:'新浪微博',chars:'',length:16},
 }
 
