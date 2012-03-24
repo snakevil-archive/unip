@@ -29,6 +29,8 @@ $CalcUniP = function() {
         r.chars = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
     if (r.chars.length < r.length)
         r.length = r.chars.length;
+    else if (!r.length)
+        r.length = 32;
     document.getElementById('Password').innerText = $CalcUniP.c($CalcUniP.g(r.chars.length, r.length), r.chars);
 }
 
