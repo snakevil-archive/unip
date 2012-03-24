@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>UniP</title>
-	<meta name="viewport" content="width=device-width,  initial-scale=1, maximum-scale=1">
-	<link rel="stylesheet" href="./static/css/ios.css" type="text/css" media="screen">
-	<script language="Javascript" src="./static/js/md5.js"></script>
-	<script language="Javascript" src="./static/js/rules.js"></script>
-	<script language="Javascript" src="./static/js/unip.js"></script>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="format-detection" content="telephone=no,address=no"/>
+<link rel="stylesheet" href="./static/css/ios.css" type="text/css" media="screen"/>
+<script type="text/javascript" src="./static/js/md5.js"></script>
+<script type="text/javascript" src="./static/js/rules.js"></script>
+<script type="text/javascript" src="./static/js/unip.js"></script>
 </head>
-<body>
-	<div class="ios-navbar">
-		<h1>UniP</h1>
-	</div>
-	<div class="ios-navbar-placeholder"></div>
-	<div class="ios-block">
-		<div class="ios-sheet">
-			<div>
-				<label>Service</label>
-				<select id="Service" onchange="$CalcUniP()"></select>
-				<script language="Javascript">
-				<!--
-				(function() {
-					for (var i in $Rules)
-						document.getElementById('Service').innerHTML += '<option value="' + i + '">' + i + '</option>';
-				})();
-				-->
-				</script>
+<div class="header toolbar">
+	<h1 class="text">UniP</h1>
+</div>
+<div class="page_body jt_vp" >
+	<div class="jt_vp_b">
+		<div class="ios_block">
+			<div class="ios_list_view">
+				<div class="list_item">
+					<label class="text_label">Service</label>
+					<select class="text_feild" id="Service" onchange="$CalcUniP()"><script>
+						(function() {
+							for (var i in $Rules)
+								document.write('<option value="' + i + '">' + i + '</option>');
+						})();
+						</script></select>
+				</div>
+				<div class="list_item">
+					<label class="text_label">Account</label>
+					<input class="text_feild" type="email" id="Account" placeholder="Email address prefered" onkeyup="$CalcUniP()"/>
+				</div>
+				<div class="list_item">
+					<label class="text_label">Seed</label>
+					<input class="text_feild" id="Seed" type="password" placeholder="As simple password to calc with" onkeyup="$CalcUniP()"/>
+				</div>
 			</div>
-			<div>
-				<label>Account</label>
-				<input id="Account" onkeyup="$CalcUniP()">
-			</div>
-			<div>
-				<label>Seed</label>
-				<input id="Seed" type="password" onkeyup="$CalcUniP()">
+		</div>
+		<div class="ios_block">
+			<h4 class="block_caption">Password</h4>
+			<div class="ios_list_view">
+				<div class="list_item">
+					<p id="Password">&nbsp;</p>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="ios-block">
-		<h2>Password</h2>
-		<div class="ios-sheet">
-			<p id="Password" style="TEXT-ALIGN:center">&nbsp;</p>
-		</div>
-	</div>
+</div>
 </body>
 </html>
-<!-- vim: se ft=html fenc=utf-8 ff=unix tw=198486 noet sw=2 ts=2 sts=2: -->
