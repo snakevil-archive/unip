@@ -3,6 +3,10 @@ html,body,p,h1,h2,h3,h4,h5,h6,ol,ul,dl,li,dt,dd{margin:0;padding:0;}
 html,table,input,textarea,select{
 	font-family:Helvetica,Arial,sans-serif;
 }
+*{
+	-webkit-tap-highlight-color:transparent;
+	-webkit-touch-callout:none;
+}
 body{
 	background-color:rgb(203,210,216);
 	background-size:7px;
@@ -77,6 +81,9 @@ body{
 	.page_body{
 		padding:43px 0;
 	}
+	.copyright{
+		font-size:14px;
+	}
 }
 @media screen and (orientation:landscape){
 	.toolbar{
@@ -93,6 +100,9 @@ body{
 	}
 	.page_body{
 		padding:31px 0;
+	}
+	.copyright{
+		font-size:12px;
 	}
 }
 
@@ -147,20 +157,25 @@ body{
 	color:#000;
 	font-weight:bold;
 	height:28px;
+	position:relative;
 }
 .ios_list_view .list_item .text_label{
 	font-size:16px;
 	line-height:28px;
+	float:left;
 }
 .ios_list_view .list_item .text_feild{
-	float:right;
 	font-weight:normal;
 	color:rgb(56,84,135);
 	font-size:16px;
 	margin:0;
 	padding:0;
 	line-height:28px;
-	display:inline-block;
+	height:28px;
+	position:absolute;
+	right:7px;
+	left:80px;
+	display:block;
 }
 .ios_list_view .list_item input{
 	background:transparent;
