@@ -31,7 +31,7 @@ $CalcUniP = function() {
         r.length = r.chars.length;
     else if (!r.length)
         r.length = 32;
-    document.getElementById('Password').innerText = $CalcUniP.c($CalcUniP.g(r.chars.length, r.length), r.chars);
+    document.getElementById('Password').value = $CalcUniP.c($CalcUniP.g(r.chars.length, r.length), r.chars);
 }
 
 $CalcUniP.c = function(offsets, chars) {

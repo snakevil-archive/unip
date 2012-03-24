@@ -20,21 +20,32 @@ else if("msTransform" in _dec){
 }
 
 function isSingleTouch(event){
-	return true;
+	return event.touches.length === 1 && event.targetTouches.length === 1 && event.changedTouches.length === 1;
 }
 
 function initViewport(handler){
-	var target = hanlder.querySelector(".vp_b");
+	var target = handler.querySelector(".vp_b");
 	if(target){
 		function start(e){
-			
+			if(isSingleTouch(e)){
+				handler.addEventListener("touchmove", move, false);
+				handler.addEventListener("touchend", end, false);
+				handler.addEventListener("touchcancel", end, false);
+			}
 		}
 		function move(e){
-		
+			if(isSingleTouch(e)){
+				
+			}
 		}
 		function end(e){
-		
+			if(isSingleTouch(e)){
+				handler.removeEventListener("touchmove", move, false);
+				handler.removeEventListener("touchend", end, false);
+				handler.removeEventListener("touchcancel", end, false);
+			}
 		}
+		handler.addEventListener("touchstart", start, false);
 	}
 }
 if(document.querySelector(".jt_vp")){
