@@ -22,7 +22,7 @@
  */
 
 if (typeof $ == 'undefined')
-    $ = {}
+    $ = {};
 
 (function() {
 $.Calc = function() {
