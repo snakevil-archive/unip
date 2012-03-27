@@ -35,7 +35,7 @@ function initViewport(handler){
 		}
 		function move(e){
 			if(isSingleTouch(e)){
-				
+
 			}
 		}
 		function end(e){

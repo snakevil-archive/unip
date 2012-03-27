@@ -21,47 +21,52 @@
  * @license   http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-$CalcUniP = function() {
-    var r = $Rules[document.getElementById('Service').value];
-    if (!r)
+if (typeof $ == 'undefined')
+    $ = {}
+
+(function() {
+$.Calc = function() {
+    var rule = $.rules[document.getElementById('Service').value];
+    if (!rule)
         return;
-    if (!r.chars.length)
-        r.chars = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
-    if (r.chars.length < r.length)
-        r.length = r.chars.length;
-    else if (!r.length)
-        r.length = 32;
-    document.getElementById('Password').value = $CalcUniP.c($CalcUniP.g(r.chars.length, r.length), r.chars);
+    if (!rule.chars.length)
+        rule.chars = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
+    if (rule.chars.length < rule.length)
+        rule.length = rule.chars.length;
+    else if (!rule.length)
+        rule.length = 32;
+    document.getElementById('Password').value = calc(seed(rule.chars.length, rule.length), rule.chars);
 }
 
-$CalcUniP.c = function(offsets, chars) {
+var calc = function(offsets, chars) {
     for (var i = 0; i < offsets.length; i++)
         offsets[i] = chars.charAt(offsets[i]);
     return offsets.join('');
 }
 
-$CalcUniP.g = function(range, length) {
-    var s = Crypto.MD5('Service:' + document.getElementById('Service').value +
+var seed = function(range, length) {
+    var seed = Crypto.MD5('Service:' + document.getElementById('Service').value +
             'Account:' + document.getElementById('Account').value +
             'Seed:' + document.getElementById('Seed').value),
-        v = [],
-        i = 0;
-    while (length > v.length)
-        v = $CalcUniP.u(v, $CalcUniP.m(Crypto.MD5(s + 'Time-' + (i++), {asBytes: true}), range));
-    return v.slice(0, length);
+        offsets = [],
+        times = 0;
+    while (length > offsets.length)
+        offsets = unique(offsets, mod(Crypto.MD5(seed + 'Time-' + (times++), {asBytes: true}), range));
+    return offsets.slice(0, length);
 }
 
-$CalcUniP.m = function(bytes, range) {
+var mod = function(bytes, range) {
     for (var i = 0; i < bytes.length; i++)
         bytes[i] %= range;
     return bytes;
 }
 
-$CalcUniP.u = function(origin, addition) {
+var unique = function(origin, addition) {
     for (var i = 0; i < addition.length; i++)
         if (-1 == origin.indexOf(addition[i]))
             origin[origin.length] = addition[i];
     return origin;
 }
+})();
 
 // vim: se ft=javascript fenc=utf-8 ff=unix:

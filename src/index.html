@@ -7,9 +7,6 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
 <meta name="format-detection" content="telephone=no,address=no"/>
 <link rel="stylesheet" href="./static/css/ios.css" type="text/css" media="screen"/>
-<script type="text/javascript" src="./static/js/md5.js"></script>
-<script type="text/javascript" src="./static/js/rules.js"></script>
-<script type="text/javascript" src="./static/js/unip.js"></script>
 </head>
 <div class="header toolbar">
 	<h1 class="text">Uni<small>•que•</small>P<small>•assword Calculator</small></h1>
@@ -20,28 +17,15 @@
 			<div class="ios_list_view">
 				<div class="list_item">
 					<label class="text_label">Service</label>
-					<select class="text_feild" id="Service" onchange="$CalcUniP()"><script>
-						(function() {
-							var i=[];
-							for (var j in $Rules)i[i.length]=j;
-							i=i.sort();var k,l;
-							for (j=0;j<i.length;j++){
-								k=$Rules[i[j]].title,l=i[j].split('.');
-								if(!k)l[0]=l[0].charAt(0).toUpperCase()+l[0].substr(1),k=l.join('.');
-								else if(k.toLowerCase()==l[0].toLowerCase())l[0]=k,k=l.join('.');
-								else k+=' ('+i[j]+')';
-								document.write('<option value="'+i[j]+'">'+k+'</option>');
-							}
-						})();
-						</script></select>
+					<select class="text_feild" id="Service" onchange="$.Calc()"></select>
 				</div>
 				<div class="list_item">
 					<label class="text_label">Account</label>
-					<input class="text_feild" type="email" id="Account" placeholder="Email address prefered" onkeyup="$CalcUniP()"/>
+					<input class="text_feild" type="email" id="Account" placeholder="Email address prefered" onkeyup="$.Calc()"/>
 				</div>
 				<div class="list_item">
 					<label class="text_label">Seed</label>
-					<input class="text_feild" id="Seed" type="password" placeholder="As simple password to calc with" onkeyup="$CalcUniP()"/>
+					<input class="text_feild" id="Seed" type="password" placeholder="As simple password to calc with" onkeyup="$.Calc()"/>
 				</div>
 			</div>
 		</div>
@@ -50,7 +34,6 @@
 			<div class="ios_list_view">
 				<div class="list_item">
 					<input id="Password" type="text" class=""/>
-					<script>$CalcUniP()</script>
 				</div>
 			</div>
 		</div>
@@ -60,6 +43,32 @@
 	</div>
 </div>
 <script type="text/javascript" src="./static/js/ui.js"></script>
+<script type="text/javascript" src="./static/js/md5.js"></script>
+<script type="text/javascript" src="./static/js/rules.js"></script>
+<script type="text/javascript" src="./static/js/unip.js"></script>
+<script>
+(function() {
+	var services = [],
+	html = '';
+	for (var service in $.rules)
+		services[services.length] = service;
+	for (var i = 0, title, domains; i < services.length; i++) {
+		title = $.rules[services[i]].title,
+		domains = services[i].split('.');
+		if (!title)
+			domains[0] = domains[0].charAt(0).toUpperCase() + domains[0].substr(1),
+			title = domains.join('.');
+		else if (title.toLowerCase() == domains[0].toLowerCase())
+			domains[0] = title,
+			title = domains.join('.');
+		else
+			title += ' (' + services[i] + ')';
+		html += '<option value="' + services[i] + '">' + title + '</option>';
+	}
+	document.getElementById('Service').innerHTML = html;
+	return $.Calc();
+})();
+</script>
 </body>
 </html>
 <!-- vim: se ft=html fenc=utf-8 ff=unix tw=198486 sw=2 ts=2 sts=2 noet: -->
