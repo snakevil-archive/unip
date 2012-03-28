@@ -51,6 +51,6 @@ except httplib.HTTPException as e:
 except socket.error as e:
     sys.exit(3)
 
-print data
+sys.stdout.write(';'+data.strip())
 
 # vim: se ft=python fenc=utf-8 ff=unix:

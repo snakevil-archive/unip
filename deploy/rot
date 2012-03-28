@@ -42,7 +42,7 @@ try:
         else:
             rot += i
     clob = clob.replace('\\', '\\\\').replace('\'', '\\\'')
-    print "eval($.ROT('" + rot + "'))"
+    sys.stdout.write(";eval($.ROT('" + rot + "'))")
 except IOError as e:
     sys.exit(1)
 
