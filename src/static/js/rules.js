@@ -85,6 +85,16 @@ $.rules = {
         'chars' : '',
         'length' : 32
     },
+    'gravatar.com' : {
+        'title' : '',
+        'chars' : '',
+        'length' : 32
+    },
+    'bitbucket.org' : {
+        'title' : '',
+        'chars' : '',
+        'length' : 32
+    },
 }
 
 // vim: se ft=javascript fenc=utf-8 ff=unix tw=198486:
