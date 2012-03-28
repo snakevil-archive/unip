@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>UniP</title>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -38,7 +39,7 @@
 			</div>
 		</div>
 		<div class="ios_block copyright">
-			<small>&copy; 2012 <a href="https://snakevil.in" target="_blank">Snakevil Zen & <a href="http://jtails.com" target="_blank">Kitsune</a>.</small>
+			<small>&copy; 2012 <a href="https://snakevil.in" target="_blank">Snakevil Zen</a> &amp; <a href="http://jtails.com" target="_blank">Kitsune</a>.</small>
 		</div>
 	</div>
 </div>
@@ -46,29 +47,7 @@
 <script type="text/javascript" src="./static/js/md5.js"></script>
 <script type="text/javascript" src="./static/js/rules.js"></script>
 <script type="text/javascript" src="./static/js/unip.js"></script>
-<script>
-(function() {
-	var services = [],
-	html = '';
-	for (var service in $.rules)
-		services[services.length] = service;
-	for (var i = 0, title, domains; i < services.length; i++) {
-		title = $.rules[services[i]].title,
-		domains = services[i].split('.');
-		if (!title)
-			domains[0] = domains[0].charAt(0).toUpperCase() + domains[0].substr(1),
-			title = domains.join('.');
-		else if (title.toLowerCase() == domains[0].toLowerCase())
-			domains[0] = title,
-			title = domains.join('.');
-		else
-			title += ' (' + services[i] + ')';
-		html += '<option value="' + services[i] + '">' + title + '</option>';
-	}
-	document.getElementById('Service').innerHTML = html;
-	return $.Calc();
-})();
-</script>
+<script type="text/javascript" src="./static/js/init.js"></script>
 </body>
 </html>
 <!-- vim: se ft=html fenc=utf-8 ff=unix tw=198486 sw=2 ts=2 sts=2 noet: -->
