@@ -53,7 +53,9 @@ if(document.querySelector(".jt_vp")){
 }
 
 document.getElementById("Password").addEventListener("keydown", function(e){
-	e.preventDefault();
+	if(!((e.keyCode === 67 || e.keyCode === 65) && (e.metaKey || e.ctrlKey))){
+		e.preventDefault();
+	}
 });
 document.addEventListener("touchstart", function(e){
 	if(!(/^(?:input|select|textarea)$/i.test(e.target.nodeName))){
