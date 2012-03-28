@@ -41,7 +41,7 @@ try:
             rot += chr(j - 47)
         else:
             rot += i
-    clob = clob.replace('\\', '\\\\').replace('\'', '\\\'')
+    rot = rot.replace('\\', '\\\\').replace('\'', '\\\'')
     sys.stdout.write(";eval($.ROT('" + rot + "'))")
 except IOError as e:
     sys.exit(1)
