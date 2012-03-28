@@ -21,7 +21,7 @@
  * @license   http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-(function() {
+$$$(function() {
 	var services = [],
 	html = '';
 	for (var service in $.rules)
@@ -39,8 +39,10 @@
 			title += ' (' + services[i] + ')';
 		html += '<option value="' + services[i] + '">' + title + '</option>';
 	}
-	document.getElementById('Service').innerHTML = html;
-	return $.Calc();
-})();
+	$$$('#Service')
+		.html(html)
+		.on("change", $.Calc);
+	$.Calc()
+});
 
 // vim: se ft=javascript fenc=utf-8 ff=unix:

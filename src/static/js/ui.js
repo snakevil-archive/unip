@@ -678,21 +678,25 @@ function initViewport(handler){
 if(document.querySelector(".jt_vp")){
 	initViewport(document.querySelector(".jt_vp"));
 }
-$$$("#Account")
-	.val(localStorage["user_account"] || "")
-	.on("keyup", function(e){
-		localStorage["user_account"] = this.value.trim();
+$$$(function(){
+	$$$("#Account")
+		.val(localStorage["user_account"] || "")
+		.on("keyup", function(e){
+			localStorage["user_account"] = this.value.trim();
+			window.$.Calc();
+		});
+	
+	$$$("#Password").on("keydown", function(e){
+		if(!((e.keyCode === 67 || e.keyCode === 65) && (e.metaKey || e.ctrlKey))){
+			e.preventDefault();
+		}
 	});
-
-$$$("#Password").on("keydown", function(e){
-	if(!((e.keyCode === 67 || e.keyCode === 65) && (e.metaKey || e.ctrlKey))){
-		e.preventDefault();
-	}
+	$$$("#Seed").on("keyup", window.$.Calc);
+	bind(document, "touchstart", function(e){
+		if(!(/^(?:input|select|textarea)$/i.test(e.target.nodeName))){
+			e.preventDefault();
+		}
+	}, true);
 });
-bind(document, "touchstart", function(e){
-	if(!(/^(?:input|select|textarea)$/i.test(e.target.nodeName))){
-		e.preventDefault();
-	}
-}, true);
 
 })(window);
