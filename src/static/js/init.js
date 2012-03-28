@@ -22,25 +22,46 @@
  */
 
 (function() {
-	var services = [],
-	html = '';
-	for (var service in $.rules)
-		services[services.length] = service;
-	for (var i = 0, title, domains; i < services.length; i++) {
-		title = $.rules[services[i]].title,
-		domains = services[i].split('.');
-		if (!title)
-			domains[0] = domains[0].charAt(0).toUpperCase() + domains[0].substr(1),
-			title = domains.join('.');
-		else if (title.toLowerCase() == domains[0].toLowerCase())
-			domains[0] = title,
-			title = domains.join('.');
-		else
-			title += ' (' + services[i] + ')';
-		html += '<option value="' + services[i] + '">' + title + '</option>';
-	}
-	document.getElementById('Service').innerHTML = html;
-	return $.Calc();
+    var services = {},
+    html = '',
+    type = '';
+    for (var service in $.rules) {
+        service = service.toLowerCase();
+        type = service.charAt(0);
+        if (96 < type.charCodeAt(0) && type.charCodeAt(0) < 123)
+            type = type.toUpperCase();
+        else
+            type = '#';
+        if (!services[type])
+            services[type] = [];
+        if (-1 == services[type].indexOf(service))
+            services[type][services[type].length] = service;
+    }
+    for (var i = 64, j, k, title, domains; i < 91; i++) {
+        j = String.fromCharCode(i);
+        if ('@' == j)
+            j = '#';
+        if (!services[j])
+            continue;
+        html += '<optgroup label="' + j + '">';
+        services[j] = services[j].sort();
+        for (k = 0; k < services[j].length; k++) {
+            title = $.rules[services[j][k]].title,
+            domains = services[j][k].split('.');
+            if (!title)
+                domains[0] = domains[0].charAt(0).toUpperCase() + domains[0].substr(1),
+                title = domains.join('.');
+            else if (title.toLowerCase() == domains[0].toLowerCase())
+                domains[0] = title,
+                title = domains.join('.');
+            else
+                title += ' (' + services[j][k] + ')';
+            html += '<option value="' + services[j][k] + '">' + title + '</option>';
+        }
+        html += '</optgroup>';
+    }
+    document.getElementById('Service').innerHTML = html;
+    return $.Calc();
 })();
 
 // vim: se ft=javascript fenc=utf-8 ff=unix:
