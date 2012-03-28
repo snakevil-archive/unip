@@ -1,0 +1,49 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#
+'''Encodes piped clob in ROT13 algorithm.'''
+#
+# This file is part of UniP.
+#
+# UniP is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# UniP is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UniP.  If not, see <http://www.gnu.org/licenses/>.
+#
+# @author    Snakevil Zen <zsnakevil@gmail.com>
+# @copyright © 2012 snakevil.in
+# @license   http://www.gnu.org/licenses/gpl-3.0.html
+
+import sys
+
+try:
+    if 2 > len(sys.argv) or '-' != sys.argv[1]:
+        print __doc__
+        print
+        print 'Usage:', sys.argv[0], '-'
+        sys.exit(-1)
+
+    clob = sys.stdin.read().strip()
+    rot = ''
+    for i in clob:
+        j = ord(i)
+        if 32 < j and j < 80:
+            rot += chr(j + 47)
+        elif 79 < j and j < 127:
+            rot += chr(j - 47)
+        else:
+            rot += i
+    clob = clob.replace('\\', '\\\\').replace('\'', '\\\'')
+    print "eval($.ROT('" + rot + "'))"
+except IOError as e:
+    sys.exit(1)
+
+# vim: se ft=python fenc=utf-8 ff=unix:
