@@ -1,0 +1,127 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#
+'''Packs a HTML file and related scripts and stylesheets into a single one.'''
+#
+# This file is part of UniP.
+#
+# UniP is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# UniP is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UniP.  If not, see <http://www.gnu.org/licenses/>.
+#
+# @author    Snakevil Zen <zsnakevil@gmail.com>
+# @copyright © 2012 snakevil.in
+# @license   http://www.gnu.org/licenses/gpl-3.0.html
+
+import HTMLParser, sys
+
+class Packer(HTMLParser.HTMLParser):
+    html = ''
+    _script = False
+    def handle_decl(self, decl):
+        self.html += '<!' + decl.strip() + '>'
+        return
+    def handle_starttag(self, tag, attrs):
+        if 'link' == tag:
+            link_href = self._parse_link(attrs)
+            if link_href:
+                return self._include_css(link_href)
+        elif 'script' == tag:
+            script_src = self._parse_script(attrs)
+            if script_src:
+                self._script = True
+                return self._include_js(script_src)
+        self.html += self.get_starttag_text()
+        return
+    def handle_startendtag(self, tag, attrs):
+        if 'link' == tag:
+            link_href = self._parse_link(attrs)
+            if link_href:
+                return self._include_css(link_href)
+        self.html += self.get_starttag_text()
+        return
+    def handle_endtag(self, tag):
+        if 'script' == tag and self._script:
+            self._script = False
+            return
+        if 'html' == tag:
+            self.html = self.html \
+                .replace('\x19\x84\x08\x06</style><style>\x19\x84\x08\x06', '') \
+                .replace('\x19\x84\x08\x06</script><script>\x19\x84\x08\x06', '') \
+                .replace('\x19\x84\x08\x06</style>', '</style>') \
+                .replace('<style>\x19\x84\x08\x06', '<style>') \
+                .replace('\x19\x84\x08\x06</script>', '</script>') \
+                .replace('<script>\x19\x84\x08\x06', '<script>') \
+                .replace('<script>;', '<script>')
+        self.html += '</' + tag + '>'
+        return
+    def handle_data(self, data):
+        self.html += data.strip()
+        return
+    def handle_entityref(self, name):
+        self.html += '&' + name + ';'
+        return
+    def handle_charref(self, name):
+        self.html += '&#' + name + ';'
+        return
+    def _parse_link(self, attrs):
+        i = ''
+        for j in attrs:
+            if 'rel' == j[0] and 'stylesheet' != j[1]:
+                return ''
+            if 'type' == j[0] and 'text/css' != j[1]:
+                return ''
+            if 'href' == j[0]:
+                i = j[1]
+        return i
+    def _parse_script(self, attrs):
+        i = ''
+        for j in attrs:
+            if 'language' == j[0] and 'javascript' != j[1].lower():
+                return ''
+            if 'type' == j[0] and 'text/javascript' != j[1]:
+                return ''
+            if 'src' == j[0]:
+                i = j[1]
+        return i
+    def _include_css(self, file):
+        css = open(file)
+        self.html += '<style>\x19\x84\x08\x06' + css.read() + '\x19\x84\x08\x06</style>'
+        css.close()
+        return
+    def _include_js(self, file):
+        js = open(file)
+        self.html += '<script>\x19\x84\x08\x06' + js.read() + '\x19\x84\x08\x06</script>'
+        js.close()
+        return
+
+try:
+    if 2 > len(sys.argv):
+        print __doc__
+        print
+        print 'Usage:', sys.argv[0], '<HTML-FILE>'
+        sys.exit(-1)
+
+    html_src = open(sys.argv[1], 'r')
+    html = html_src.read()
+    html_src.close()
+
+    packer = Packer()
+    packer.feed(html)
+    packer.close()
+
+    print packer.html
+
+except IOError as e:
+    sys.exit(1)
+
+# vim: se ft=python fenc=utf-8 ff=unix:
