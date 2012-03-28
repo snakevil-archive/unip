@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Scans a local HTML page and reports included scripts and stylesheets files.
+'''Scans a local HTML page and reports included scripts and stylesheets files.'''
 #
 # This file is part of UniP.
 #
@@ -61,6 +61,8 @@ class Scanner(HTMLParser.HTMLParser):
 
 try:
     if 2 > len(sys.argv):
+        print __doc__
+        print
         print 'Usage:', sys.argv[0], '<HTML-FILE>'
         sys.exit(-1)
 

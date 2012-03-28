@@ -1,9 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Compress javascript files via online UglifyJS compressor.
-#
-# SPECIAL THANKS to http://marijnhaverbeke.nl/uglifyj
+'''Compress javascript files via online Google Closure Compiler.'''
 #
 # This file is part of UniP.
 #
@@ -24,9 +22,15 @@
 # @copyright © 2012 snakevil.in
 # @license   http://www.gnu.org/licenses/gpl-3.0.html
 
-import httplib, urllib, sys
+import httplib, urllib, sys, socket
 
 try:
+    if 2 > len(sys.argv):
+        print __doc__
+        print
+        print 'Usage:', sys.argv[0], '<JAVASCRIPT-FILE>'
+        sys.exit(-1)
+
     js_src = open(sys.argv[1], "r")
     params = urllib.urlencode([
         ("js_code", js_src.read())
@@ -37,13 +41,15 @@ except IOError as e:
 
 try:
     headers = { "Content-Type": "application/x-www-form-urlencoded" }
-    conn = httplib.HTTPConnection('marijnhaverbeke.nl', timeout=10)
-    conn.request('POST', '/uglifyjs', params, headers)
+    conn = httplib.HTTPConnection('closure-compiler.appspot.com', timeout=20)
+    conn.request('POST', '/compile', params, headers)
     response = conn.getresponse()
     data = response.read()
     conn.close
 except httplib.HTTPException as e:
     sys.exit(2)
+except socket.error as e:
+    sys.exit(3)
 
 print data
 
