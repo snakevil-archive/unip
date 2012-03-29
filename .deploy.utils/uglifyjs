@@ -43,7 +43,7 @@ except IOError as e:
 
 try:
     headers = { "Content-Type": "application/x-www-form-urlencoded" }
-    conn = httplib.HTTPConnection('marijnhaverbeke.nl', timeout=10)
+    conn = httplib.HTTPConnection('marijnhaverbeke.nl', timeout=15)
     conn.request('POST', '/uglifyjs', params, headers)
     response = conn.getresponse()
     data = response.read()
@@ -51,6 +51,6 @@ try:
 except httplib.HTTPException as e:
     sys.exit(2)
 
-sys.stdout.write(';'+data.strip())
+sys.stdout.write(data.strip())
 
 # vim: se ft=python fenc=utf-8 ff=unix:
