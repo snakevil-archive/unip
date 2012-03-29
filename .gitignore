@@ -1,4 +1,5 @@
 .*
 !.gitignore
+!/.deploy.utils/
 /build/
-/contrib/
+/release/
