@@ -56,9 +56,10 @@ $(function(){
 		initViewport(document.querySelector(".jt_vp"));
 	}
 	$("#Account")
-		.val(localStorage["user_account"] || "")
+		.val(localStorage[$("#Service").val()] || localStorage["user_account"] || "")
 		.on("keyup", function(e){
-			localStorage["user_account"] = this.value.trim();
+			//localStorage["user_account"] = this.value.trim();
+			localStorage[$("#Service").val()] = this.value.trim();
 			UNIP.Calc();
 		});
 
@@ -91,7 +92,10 @@ $(function(){
 	}
 	$('#Service')
 		.html(html)
-		.on("change", UNIP.Calc);
+		.on("change", function(e){
+			$("#Account").val(localStorage[this.value] || localStorage["user_account"]);
+			UNIP.Calc();
+		});
 	UNIP.Calc()
 });
 

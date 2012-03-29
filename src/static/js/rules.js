@@ -21,7 +21,7 @@
  * @license   http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-SYS.ns("UNIP", function(){
+$SYS.ns("UNIP", function(){
 	this.rules = {
 	    '101domain.com' : {
 	        'title' : '',

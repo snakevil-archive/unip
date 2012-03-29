@@ -23,7 +23,7 @@
 
 $SYS.ns("UNIP", function(){
 	this.Calc = function() {
-	    var rule = UNIP.rules[document.getElementById('Service').value];
+	    var rule = UNIP.rules[$('#Service').val()];
 	    if (!rule)
 	        return;
 	    if (!rule.chars.length)
