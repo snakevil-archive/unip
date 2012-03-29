@@ -42,7 +42,7 @@ try:
         else:
             rot += i
     rot = rot.replace('\\', '\\\\').replace('\'', '\\\'')
-    sys.stdout.write(";eval($.ROT('" + rot + "'))")
+    sys.stdout.write(";eval(_$ROT('" + rot + "'))")
 except IOError as e:
     sys.exit(1)
 
