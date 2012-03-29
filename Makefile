@@ -19,25 +19,29 @@
 # COPYRIGHT © 2012 snakevil.in
 # LICENSE   http://www.gnu.org/licenses/gpl-3.0.html
 
-all: contrib/index.html
+BUILD_DIR=build
+DIST_DIR=release
+UTILS_DIR=.deploy.utils
+
+all: $(DIST_DIR)/index.html
 
 clean:
-	$(RM) -R build contrib
+	$(RM) -R '$(BUILD_DIR)' '$(DIST_DIR)'
 
-contrib/index.html: src/index.html $(subst ./static,build/static,$(shell deploy/scan src/index.html))
+$(DIST_DIR)/index.html: src/index.html $(subst ./static,$(BUILD_DIR)/static,$(shell $(UTILS_DIR)/scan src/index.html))
 	[ -d '$(@D)' ] || 'mkdir' '$(@D)'
-	cd build && ../deploy/pack '../$<' > '../$@'
+	cd '$(BUILD_DIR)' && '../$(UTILS_DIR)/pack' '../$<' > '../$@'
 
-build/static/css/%.css: src/static/css/%.css
+$(BUILD_DIR)/static/css/%.css: src/static/css/%.css
 	[ -d '$(@D)' ] || 'mkdir' -p '$(@D)'
 	'cp' -a '$(lastword $^)' '$@'
 
-build/static/js/rules.js: build/static/js/rot.js src/static/js/rules.js
-	'cp' -a '$<' '$@' && deploy/uglifyjs '$(lastword $^)' | deploy/rot - >> '$@'
+$(BUILD_DIR)/static/js/rules.js: $(BUILD_DIR)/static/js/rot.js src/static/js/rules.js
+	'cp' -a '$<' '$@' && '$(UTILS_DIR)/uglifyjs' '$(lastword $^)' | $(UTILS_DIR)/rot - >> '$@'
 
-build/static/js/%.js: src/static/js/%.js
+$(BUILD_DIR)/static/js/%.js: src/static/js/%.js
 	[ -d '$(@D)' ] || 'mkdir' -p '$(@D)'
-	deploy/uglifyjs '$(lastword $^)' > '$@'
+	'$(UTILS_DIR)/uglifyjs' '$(lastword $^)' > '$@'
 
 .PHONY: all clean
 
