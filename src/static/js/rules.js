@@ -21,80 +21,69 @@
  * @license   http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-if (typeof $ == 'undefined')
-    $ = {}
-
-$.rules = {
-    '101domain.com' : {
-        'title' : '',
-        'chars' : '',
-        'length' : 0
-    },
-    'alipay.com' : {
-        'title' : '支付宝',
-        'chars' : '',
-        'length' : 0
-    },
-    'facebook.com' : {
-        'title' : '',
-        'chars' : '',
-        'length' : 0
-    },
-    'github.com' : {
-        'title' : 'GitHub',
-        'chars' : '',
-        'length' : 0
-    },
-    'google.com' : {
-        'title' : '',
-        'chars' : '',
-        'length' : 0
-    },
-    'qq.com' : {
-        'title' : 'QQ',
-        'chars' : '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~',
-        'length' : 16
-    },
-    'taobao.com' : {
-        'title' : '淘宝网',
-        'chars' : '',
-        'length' : 16
-    },
-    'twitter.com' : {
-        'title' : '',
-        'chars' : '',
-        'length' : 0
-    },
-	'weibo.com' : {
-        'title' : '新浪微博',
-        'chars' : '',
-        'length' : 16
-    },
-    'my.cl.ly' : {
-        'title' : 'CloudApp',
-        'chars' : '',
-        'length' : 32
-    },
-    'readability.com' : {
-        'title' : '',
-        'chars' : '',
-        'length' : 32
-    },
-    'readitlaterlist.com' : {
-        'title' : 'Read it Later',
-        'chars' : '',
-        'length' : 32
-    },
-    'gravatar.com' : {
-        'title' : '',
-        'chars' : '',
-        'length' : 32
-    },
-    'bitbucket.org' : {
-        'title' : '',
-        'chars' : '',
-        'length' : 32
-    },
-}
+SYS.ns("UNIP", function(){
+	this.rules = {
+	    '101domain.com' : {
+	        'title' : '',
+	        'chars' : '',
+	        'length' : 0
+	    },
+	    'alipay.com' : {
+	        'title' : '支付宝',
+	        'chars' : '',
+	        'length' : 0
+	    },
+	    'facebook.com' : {
+	        'title' : '',
+	        'chars' : '',
+	        'length' : 0
+	    },
+	    'github.com' : {
+	        'title' : 'GitHub',
+	        'chars' : '',
+	        'length' : 0
+	    },
+	    'google.com' : {
+	        'title' : '',
+	        'chars' : '',
+	        'length' : 0
+	    },
+	    'qq.com' : {
+	        'title' : 'QQ',
+	        'chars' : '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~',
+	        'length' : 16
+	    },
+	    'taobao.com' : {
+	        'title' : '淘宝网',
+	        'chars' : '',
+	        'length' : 16
+	    },
+	    'twitter.com' : {
+	        'title' : '',
+	        'chars' : '',
+	        'length' : 0
+	    },
+		'weibo.com' : {
+	        'title' : '新浪微博',
+	        'chars' : '',
+	        'length' : 16
+	    },
+	    'my.cl.ly' : {
+	        'title' : 'CloudApp',
+	        'chars' : '',
+	        'length' : 32
+	    },
+	    'readability.com' : {
+	        'title' : '',
+	        'chars' : '',
+	        'length' : 32
+	    },
+	    'readitlaterlist.com' : {
+	        'title' : 'Read it Later',
+	        'chars' : '',
+	        'length' : 32
+	    },
+	};
+});
 
 // vim: se ft=javascript fenc=utf-8 ff=unix tw=198486:
