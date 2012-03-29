@@ -27,6 +27,7 @@ import HTMLParser, sys
 class Packer(HTMLParser.HTMLParser):
     html = ''
     _script = False
+    _virgin = True
     def handle_decl(self, decl):
         self.html += '<!' + decl.strip() + '>'
         return
@@ -60,8 +61,7 @@ class Packer(HTMLParser.HTMLParser):
                 .replace('\x19\x84\x08\x06</style>', '</style>') \
                 .replace('<style>\x19\x84\x08\x06', '<style>') \
                 .replace('\x19\x84\x08\x06</script>', '</script>') \
-                .replace('<script>\x19\x84\x08\x06', '<script>') \
-                .replace('<script>;', '<script>')
+                .replace('<script>\x19\x84\x08\x06', '<script>')
         self.html += '</' + tag + '>'
         return
     def handle_data(self, data):
@@ -99,10 +99,28 @@ class Packer(HTMLParser.HTMLParser):
         css.close()
         return
     def _include_js(self, file):
+        self.html += '<script>\x19\x84\x08\x06'
+        if self._virgin:
+            self._virgin = False
+            js = open('static/js/rot.js')
+            self.html += js.read()
+            js.close
         js = open(file)
-        self.html += '<script>\x19\x84\x08\x06' + js.read() + '\x19\x84\x08\x06</script>'
+        self.html += self._rot(js.read()) + '\x19\x84\x08\x06</script>'
         js.close()
         return
+    def _rot(self, clob):
+        rot = ''
+        for i in clob:
+            j = ord(i)
+            if 32 < j and j < 80:
+                rot += chr(j + 47)
+            elif 79 < j and j < 127:
+                rot += chr(j - 47)
+            else:
+                rot += i
+        rot = rot.replace('\\', '\\\\').replace('\'', '\\\'')
+        return "eval(_$ROT('" + rot + "'));"
 
 try:
     if 2 > len(sys.argv):

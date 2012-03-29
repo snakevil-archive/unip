@@ -36,11 +36,11 @@ $(BUILD_DIR)/static/css/%.css: src/static/css/%.css
 	[ -d '$(@D)' ] || 'mkdir' -p '$(@D)'
 	'cp' -a '$(lastword $^)' '$@'
 
-$(BUILD_DIR)/static/js/rules.js: $(BUILD_DIR)/static/js/rot.js src/static/js/rules.js
-	'cp' -a '$<' '$@' && '$(UTILS_DIR)/uglifyjs' '$(lastword $^)' | $(UTILS_DIR)/rot - >> '$@'
-
-$(BUILD_DIR)/static/js/%.js: src/static/js/%.js
+$(BUILD_DIR)/static/js/rot.js: src/static/js/rot.js
 	[ -d '$(@D)' ] || 'mkdir' -p '$(@D)'
+	'$(UTILS_DIR)/uglifyjs' '$(lastword $^)' > '$@'
+
+$(BUILD_DIR)/static/js/%.js: $(BUILD_DIR)/static/js/rot.js src/static/js/%.js
 	'$(UTILS_DIR)/uglifyjs' '$(lastword $^)' > '$@'
 
 .PHONY: all clean

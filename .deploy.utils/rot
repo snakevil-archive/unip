@@ -32,16 +32,6 @@ try:
         sys.exit(-1)
 
     clob = sys.stdin.read().strip()
-    rot = ''
-    for i in clob:
-        j = ord(i)
-        if 32 < j and j < 80:
-            rot += chr(j + 47)
-        elif 79 < j and j < 127:
-            rot += chr(j - 47)
-        else:
-            rot += i
-    rot = rot.replace('\\', '\\\\').replace('\'', '\\\'')
     sys.stdout.write(";eval(_$ROT('" + rot + "'))")
 except IOError as e:
     sys.exit(1)
