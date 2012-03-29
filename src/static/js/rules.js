@@ -42,13 +42,13 @@ $SYS.ns("UNIP", function(){
 		length : 32
 	};
 	new Service("101domain.com");
-	new Service("alipay", "支付宝");
+	new Service("alipay.com", "支付宝");
 	new Service("facebook.com");
 	new Service("github.com", "GitHub");
 	new Service("google.com");
 	new Service("qq.com", "QQ", "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~", 16);
 	new Service("taobao.com", "淘宝网");
-	new Service("twitter.com", "支付宝");
+	new Service("twitter.com");
 	new Service("weibo.com", "新浪微博", null, 16);
 	new Service("my.cl.ly", "CloudApp");
 	new Service("readability.com");

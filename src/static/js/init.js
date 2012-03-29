@@ -56,7 +56,7 @@ $(function(){
 		initViewport(document.querySelector(".jt_vp"));
 	}
 	$("#Account")
-		.val(localStorage[$("#Service").val()] || localStorage["user_account"] || "")
+		.val(localStorage[$("#Service").val()] || "")
 		.on("keyup", function(e){
 			//localStorage["user_account"] = this.value.trim();
 			localStorage[$("#Service").val()] = this.value.trim();
@@ -93,7 +93,7 @@ $(function(){
 	$('#Service')
 		.html(html)
 		.on("change", function(e){
-			$("#Account").val(localStorage[this.value] || localStorage["user_account"]);
+			$("#Account").val(localStorage[this.value] || "");
 			UNIP.Calc();
 		});
 	UNIP.Calc()

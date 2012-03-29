@@ -197,7 +197,7 @@ body{
 	color:rgb(76,86,108);
 }
 .copyright a{
-	text-decoration:none;
+	text-decoration:underline;
 	color:rgb(76,86,108);
 }
 .relative{
