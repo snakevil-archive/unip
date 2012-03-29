@@ -22,68 +22,38 @@
  */
 
 $SYS.ns("UNIP", function(){
-	this.rules = {
-	    '101domain.com' : {
-	        'title' : '',
-	        'chars' : '',
-	        'length' : 0
-	    },
-	    'alipay.com' : {
-	        'title' : '支付宝',
-	        'chars' : '',
-	        'length' : 0
-	    },
-	    'facebook.com' : {
-	        'title' : '',
-	        'chars' : '',
-	        'length' : 0
-	    },
-	    'github.com' : {
-	        'title' : 'GitHub',
-	        'chars' : '',
-	        'length' : 0
-	    },
-	    'google.com' : {
-	        'title' : '',
-	        'chars' : '',
-	        'length' : 0
-	    },
-	    'qq.com' : {
-	        'title' : 'QQ',
-	        'chars' : '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~',
-	        'length' : 16
-	    },
-	    'taobao.com' : {
-	        'title' : '淘宝网',
-	        'chars' : '',
-	        'length' : 16
-	    },
-	    'twitter.com' : {
-	        'title' : '',
-	        'chars' : '',
-	        'length' : 0
-	    },
-		'weibo.com' : {
-	        'title' : '新浪微博',
-	        'chars' : '',
-	        'length' : 16
-	    },
-	    'my.cl.ly' : {
-	        'title' : 'CloudApp',
-	        'chars' : '',
-	        'length' : 32
-	    },
-	    'readability.com' : {
-	        'title' : '',
-	        'chars' : '',
-	        'length' : 32
-	    },
-	    'readitlaterlist.com' : {
-	        'title' : 'Read it Later',
-	        'chars' : '',
-	        'length' : 32
-	    },
+	eval($SYS._shortName());
+	var rules = this.rules = {};
+	function Service(name, title, chars, length){
+		rules[name] = this;
+		if(is.s(title)){
+			this.title = title;
+		}
+		if(is.s(chars)){
+			this.chars = chars;
+		}
+		if(is.n(length) && length > 0){
+			this.length = Math.min(length, Service.prototype.length);
+		}
+	}
+	Service.prototype = {
+		title : "",
+		chars : " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~",
+		length : 32
 	};
+	new Service("101domain.com");
+	new Service("alipay", "支付宝");
+	new Service("facebook.com");
+	new Service("github.com", "GitHub");
+	new Service("google.com");
+	new Service("qq.com", "QQ", "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~", 16);
+	new Service("taobao.com", "淘宝网");
+	new Service("twitter.com", "支付宝");
+	new Service("weibo.com", "新浪微博", null, 16);
+	new Service("my.cl.ly", "CloudApp");
+	new Service("readability.com");
+	new Service("readitlaterlist.com", "Read it Later");
+
 });
 
 // vim: se ft=javascript fenc=utf-8 ff=unix tw=198486:

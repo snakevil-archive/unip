@@ -24,14 +24,7 @@
 $SYS.ns("UNIP", function(){
 	this.Calc = function() {
 	    var rule = UNIP.rules[$('#Service').val()];
-	    if (!rule)
-	        return;
-	    if (!rule.chars.length)
-	        rule.chars = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
-	    if (rule.chars.length < rule.length)
-	        rule.length = rule.chars.length;
-	    else if (!rule.length)
-	        rule.length = 32;
+	    if (!rule){ return; }
 	    $('#Password').val(calc(seed(rule.chars.length, rule.length), rule.chars));
 	};
 	
