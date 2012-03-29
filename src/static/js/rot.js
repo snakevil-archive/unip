@@ -21,20 +21,18 @@
  * @license   http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-if (typeof $ == 'undefined')
-    $ = {};
-
-$.ROT = function(clob) {
-    var result = '';
-    for (var i = asc = 0; i < clob.length; i++) {
-        asc = clob.charCodeAt(i);
-        if (32 < asc && asc < 80)
-            asc += 47;
-        else if (79 < asc && asc < 127)
-            asc -= 47;
-        result += String.fromCharCode(asc);
-    }
-    return result;
-}
-
+$SYS.ns("UNIP", function(){
+	this.ROT = function(clob) {
+	    var result = '';
+	    for (var i = asc = 0; i < clob.length; i++) {
+	        asc = clob.charCodeAt(i);
+	        if (32 < asc && asc < 80)
+	            asc += 47;
+	        else if (79 < asc && asc < 127)
+	            asc -= 47;
+	        result += String.fromCharCode(asc);
+	    }
+	    return result;
+	};
+});
 // vim: se ft=javascript fenc=utf-8 ff=unix:

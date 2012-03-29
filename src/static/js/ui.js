@@ -535,10 +535,6 @@ function eachMethodProxy(n){
 	};
 }
 
-function isSingleTouch(event){
-	return event.touches.length === 1 && event.targetTouches.length === 1 && event.changedTouches.length === 1;
-}
-
 var domIsReady = 0;
 once(document, "DOMContentLoaded", function(){
 	domIsReady = 1;
@@ -646,57 +642,5 @@ $.prototype.beforeTo = function(ele){
 	}
 	return this;
 };
-window.$$$ = function(s, c){ return new $(s, c) };
-
-function initViewport(handler){
-	var target = handler.querySelector(".vp_b");
-	if(target){
-		function start(e){
-			if(isSingleTouch(e)){
-				$$$(handler)
-					.on("touchmove", move, false)
-					.on("touchend", end, false)
-					.on("touchcancel", end, false);
-			}
-		}
-		function move(e){
-			if(isSingleTouch(e)){
-
-			}
-		}
-		function end(e){
-			if(isSingleTouch(e)){
-				$$$(handler)
-					.un("touchmove", move, false)
-					.un("touchend", end, false)
-					.un("touchcancel", end, false);
-			}
-		}
-		bind(handler, "touchstart", start, false);
-	}
-}
-if(document.querySelector(".jt_vp")){
-	initViewport(document.querySelector(".jt_vp"));
-}
-$$$(function(){
-	$$$("#Account")
-		.val(localStorage["user_account"] || "")
-		.on("keyup", function(e){
-			localStorage["user_account"] = this.value.trim();
-			window.$.Calc();
-		});
-	
-	$$$("#Password").on("keydown", function(e){
-		if(!((e.keyCode === 67 || e.keyCode === 65) && (e.metaKey || e.ctrlKey))){
-			e.preventDefault();
-		}
-	});
-	$$$("#Seed").on("keyup", window.$.Calc);
-	bind(document, "touchstart", function(e){
-		if(!(/^(?:input|select|textarea)$/i.test(e.target.nodeName))){
-			e.preventDefault();
-		}
-	}, true);
-});
-
+window.$ = function(s, c){ return new $(s, c) };
 })(window);
