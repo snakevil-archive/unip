@@ -53,6 +53,7 @@ $SYS.ns("UNIP", function(){
 	new Service("my.cl.ly", "CloudApp");
 	new Service("readability.com");
 	new Service("readitlaterlist.com", "Read it Later");
+	new Service("paypal.com", "PayPal", null, 20);
 
 });
 
