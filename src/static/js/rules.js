@@ -59,6 +59,10 @@ $SYS.ns("UNIP", function(){
     new Service("bitly.com");
     new Service("apple.com");
     new Service("doit.im");
+    new Service("xunlei.com", "迅雷");
+    new Service("douban.com", "豆瓣");
+    new Service("infoq.com", "InfoQ");
+    new Service("jiankongbao.com", "监控宝");
 });
 
 // vim: se ft=javascript fenc=utf-8 ff=unix tw=198486:
