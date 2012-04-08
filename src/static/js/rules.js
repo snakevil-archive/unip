@@ -56,6 +56,9 @@ $SYS.ns("UNIP", function(){
 	new Service("paypal.com", "PayPal", null, 20);
     new Service("gravatar.com");
     new Service("bitbucket.org");
+    new Service("bitly.com");
+    new Service("apple.com");
+    new Service("doit.im");
 });
 
 // vim: se ft=javascript fenc=utf-8 ff=unix tw=198486:
