@@ -69,7 +69,7 @@ $SYS.ns("UNIP", function(){
     new Service("ps3trophies.com", "PS3Trophies");
     new Service("appshopper.com", "AppShopper", null, 19);
     new Service("playfire.com");
-    new Service("parallels.com");
+    new Service("parallels.com", null, null, 16);
 });
 
 // vim: se ft=javascript fenc=utf-8 ff=unix tw=198486:
