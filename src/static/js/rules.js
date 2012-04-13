@@ -47,7 +47,7 @@ $SYS.ns("UNIP", function(){
 	new Service("github.com", "GitHub");
 	new Service("google.com");
 	new Service("qq.com", "QQ", "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~", 16);
-	new Service("taobao.com", "淘宝网");
+	new Service("taobao.com", "淘宝网", "!#$%&()*+-./0123456789?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\^_abcdefghijklmnopqrstuvwxyz~", 16);
 	new Service("twitter.com");
 	new Service("weibo.com", "新浪微博", "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~", 16);
 	new Service("my.cl.ly", "CloudApp");
