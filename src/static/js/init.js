@@ -55,20 +55,24 @@ $(function(){
     if(document.querySelector(".jt_vp")){
         initViewport(document.querySelector(".jt_vp"));
     }
+	function accEvent(e){
+        //localStorage["user_account"] = this.value.trim();
+        localStorage[$("#Service").val()] = this.value.trim();
+        UNIP.Calc();
+    }
     $("#Account")
         .val(localStorage[$("#Service").val()] || "")
-        .on("keyup", function(e){
-            //localStorage["user_account"] = this.value.trim();
-            localStorage[$("#Service").val()] = this.value.trim();
-            UNIP.Calc();
-        });
+        .on("keyup", accEvent);
 
     $("#Password").on("keydown", function(e){
         if(!((e.keyCode === 67 || e.keyCode === 65) && (e.metaKey || e.ctrlKey))){
             e.preventDefault();
         }
     });
-    $("#Seed").on("keyup", UNIP.Calc);
+    
+    $("#Seed").on("keyup", UNIP.Calc)
+    	.on("change", UNIP.Calc);
+
     $(document).bind("touchstart", function(e){
         if(!(/^(?:input|select|textarea)$/i.test(e.target.nodeName))){
             e.preventDefault();
@@ -112,13 +116,60 @@ $(function(){
         }
         html += '</optgroup>';
     }
+    var domService = $("#Service")[0];
     $('#Service')
         .html(html)
         .on("change", function(e){
             $("#Account").val(localStorage[this.value] || "");
             UNIP.Calc();
         });
-    UNIP.Calc()
+    var whiteList = document.createDocumentFragment();
+    while(domService.firstChild){
+    	whiteList.appendChild(domService.firstChild);
+    }
+    /*  mark black list data */
+    var blackList = whiteList.cloneNode(1);
+	var opt = blackList.firstChild;
+	while(opt.nextSibling){
+		blackList.insertBefore(opt.nextSibling, blackList.firstChild);
+	}
+	while(whiteList.firstChild){
+		domService.appendChild(whiteList.firstChild);
+	}
+    UNIP.Calc();
+    $(".header")
+    	.on("touchstart", function(e){
+    		var pinfo = e.target._pinfo = {
+    			enable : false,
+    			x : e.changedTouches[0].pageX
+    		};
+			if(pinfo.x < 40 || pinfo.x > innerWidth - 40){
+				pinfo.enable = true;
+			}
+    	})
+    	.on("touchend", function(e){
+			var pinfo = e.target._pinfo;
+    		if(pinfo && pinfo.enable){
+    			pinfo.enable = false;
+    			var x = e.changedTouches[0].pageX;
+    			if(x < 40 && whiteList.firstChild){
+    				while(domService.firstChild){
+						blackList.appendChild(domService.firstChild);
+	   				}
+    				while(whiteList.firstChild){
+    					domService.appendChild(whiteList.firstChild);
+    				}
+    			}
+    			if(x > innerWidth - 40 && blackList.firstChild){
+    				while(domService.firstChild){
+						whiteList.appendChild(domService.firstChild);
+    				}
+    				while(blackList.firstChild){
+    					domService.appendChild(blackList.firstChild);
+    				}
+     			}
+    		}		
+    	})
 });
 
 // vim: se ft=javascript fenc=utf-8 ff=unix:
