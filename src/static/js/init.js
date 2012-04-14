@@ -159,7 +159,8 @@ $(function(){
     				while(whiteList.firstChild){
     					domService.appendChild(whiteList.firstChild);
     				}
-    			}
+		            UNIP.Calc();
+	   			}
     			if(x > innerWidth - 40 && blackList.firstChild){
     				while(domService.firstChild){
 						whiteList.appendChild(domService.firstChild);
@@ -167,6 +168,7 @@ $(function(){
     				while(blackList.firstChild){
     					domService.appendChild(blackList.firstChild);
     				}
+		            UNIP.Calc();
      			}
     		}		
     	})
