@@ -42,7 +42,7 @@ $SYS.ns("UNIP", function(){
 		length : 32
 	};
 	new Service("101domain.com");
-	new Service("alipay.com", "支付宝");
+	new Service("alipay.com", "支付宝", null, 20);
 	new Service("facebook.com");
 	new Service("github.com", "GitHub");
 	new Service("google.com");
