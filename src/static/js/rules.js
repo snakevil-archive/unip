@@ -71,6 +71,7 @@ $SYS.ns("UNIP", function(){
     new Service("playfire.com");
     new Service("parallels.com", null, null, 16);
     new Service("feidee.com", "金蝶随手记", null, 16);
+    new Service("rashost.com", "瑞豪开源");
 });
 
 // vim: se ft=javascript fenc=utf-8 ff=unix tw=198486:
