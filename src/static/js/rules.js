@@ -74,6 +74,7 @@ $SYS.ns("UNIP", function(){
     new Service("rashost.com", "瑞豪开源");
     new Service("coo8.com", "库巴", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", 16);
     new Service("sublimetext.com", "Sublime Text", null, 30);
+    new Service("doo.net", "Doo", null, 32);
 });
 
 // vim: se ft=javascript fenc=utf-8 ff=unix tw=198486:
