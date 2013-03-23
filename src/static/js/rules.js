@@ -76,6 +76,7 @@ $SYS.ns("UNIP", function(){
     new Service("sublimetext.com", "Sublime Text", null, 30);
     new Service("doo.net", "Doo", null, 32);
     new Service("dropbox.com");
+    new Service("about.me", "About.Me");
 });
 
 // vim: se ft=javascript fenc=utf-8 ff=unix tw=198486:
