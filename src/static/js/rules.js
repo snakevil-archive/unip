@@ -76,8 +76,9 @@ $SYS.ns("UNIP", function(){
     new Service("sublimetext.com", "Sublime Text", null, 30);
     new Service("doo.net", "Doo", null, 32);
     new Service("dropbox.com");
-    new Service("about.me", "About.Me");
+    new Service("about.me", "About");
     new Service("name.com");
+    new Service("square-enix.com", "Square-Enix", "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~");
 });
 
 // vim: se ft=javascript fenc=utf-8 ff=unix tw=198486:
