@@ -63,7 +63,7 @@ $SYS.ns("UNIP", function(){
     new Service("douban.com", "豆瓣");
     new Service("infoq.com", "InfoQ");
     new Service("jiankongbao.com", "监控宝");
-    new Service("zhaopin.com", "智联招聘", null, 25);
+    new Service("zhaopin.com", "智联招聘", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz", 25);
     new Service("amazon.cn", "亚马逊");
     new Service("evernote.com");
     new Service("ps3trophies.com", "PS3Trophies");
